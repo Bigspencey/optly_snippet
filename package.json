@@ -11,6 +11,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "handlebars": "^4.0.3",
+    "hbs": "^3.1.1",
     "morgan": "~1.6.1",
     "request": "^2.64.0",
     "serve-favicon": "~2.3.0"
