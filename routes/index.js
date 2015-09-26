@@ -10,7 +10,9 @@ router.get('/', function(req, res, next) {
 /* POST Analysis */
 router.post('/analyze', function(req, res) {
 	var project_id = req.body.project_id;
-	snippet.retrieveSnippet(project_id);
+	snippet(req, function(results) {
+		res.render('home', { snippet : results });
+	})
 });
 
 /* POST OAuth */
