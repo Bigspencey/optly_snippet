@@ -4,7 +4,7 @@ var snippet = require('../services/snippet_analysis');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Optimizely Snippet Contents' });
+  res.render('index', { title: req.body });
 });
 
 /* POST Analysis */
