@@ -4,7 +4,7 @@ var async = require('async');
 module.exports = function (req, callback) {
 
 	async.waterfall([
-		function readSnippet (cbAsync) {
+		function readSnippet (callback) {
 			var url = "https://cdn.optimizely.com/js/",
 			snippet;
 			request(url + req.body.project_id + ".js", function(error, response, body) {
@@ -12,12 +12,12 @@ module.exports = function (req, callback) {
 					snippet = body;
 				}
 			});
-			cbAsync(null, snippet);
+			callback(null, snippet);
 		},
 
-		function sanitizeSnippet (snippet, cbAsync) {
+		function sanitizeSnippet (snippet, callback) {
 			console.log(snippet);
-			cbAsync(null, snippet);
+			callback(null, snippet);
 		}
 		],
 	function (err, results) {

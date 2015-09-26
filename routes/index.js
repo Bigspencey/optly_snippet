@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.post('/analyze', function(req, res) {
 	var project_id = req.body.project_id;
 	snippet(req, function(results) {
-		res.render('home', { snippet : results });
+		res.render('analyze', { snippet : results });
 	})
 });
 
