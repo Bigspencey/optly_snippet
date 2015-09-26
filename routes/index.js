@@ -4,7 +4,7 @@ var snippet = require('../services/snippet_analysis');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: req.body });
+  res.render('index', { title: console.dir(req.body) });
 });
 
 /* POST Analysis */
