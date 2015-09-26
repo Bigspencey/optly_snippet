@@ -3,10 +3,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Optimizely Snippet Contents' });
 });
 
-router.get('/analyze', function(req, res) {
+/* POST Analysis */
+router.post('/analyze', function(req, res) {
+
+});
+
+/* POST OAuth */
+router.post('/oauth', function(req, res) {
 
 });
 

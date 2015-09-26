@@ -1,8 +1,55 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@font-face {
+	font-family: "Proxima-Nova";
+	src: url("fonts/Mark-Simonson-Proxima-Nova.otf") format('opentype');
 }
 
-a {
-  color: #00B7FF;
+body {
+  padding: 50px;
+  font: 14px "Proxima-Nova", Times New Roman, Arial, sans-serif;
+}
+
+.title {
+	font-size: 30px;
+	text-align: center;
+	color: #0081ba;
+	padding-bottom: 1em;
+}
+
+.oauth {
+	margin: auto;
+	width: 20em;
+}
+
+.form {
+	margin: auto;
+	text-align: center;
+
+}
+
+.field {
+	margin-top: 10px;
+	width: 8em;
+	color: #0081ba;
+	font-size: 20px;
+}
+
+.confirm {
+	background-color: #0074B4;
+	border-color: #0268A0;
+	color: #FFF;
+	box-sizing: content-box;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-family: inherit;
+    cursor: pointer;
+    margin: 15px;
+    line-height: 32px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 13px;
+    font-weight: 400;
+    border-radius: 3px;
+    height: 32px;
+    padding: 0 10px;
 }
