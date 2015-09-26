@@ -2,13 +2,13 @@ var request = require('request');
 var async = require('async');
 var _ = require('lodash');
 
-module.exports = function (req, callback) {
+module.exports = function (project_id, callback) {
 
 	async.waterfall([
 		function readSnippet (callback) {
 			var url = "https://cdn.optimizely.com/js/",
 			snippet;
-			request(url + req.body.project_id + ".js", function(error, response, body) {
+			request(url + project_id + ".js", function(error, response, body) {
 				if (!error && response.statusCode == 200){
 					snippet = body;
 				}
