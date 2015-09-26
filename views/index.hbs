@@ -1,10 +1,9 @@
 <div class="container">
 	<h1 class="title">Find out what's in your Optimizley snippet!</h1>
-	<h1>{{title}}</h1>
 	<div class="form">
 		<div>
-			<form method="POST" action="oauth">
-				<input class="oauth" type="image" src="images/ConnectWithOptimizelyButton.png" alt="Submit"></input>
+			<form method="POST" action="/analyze">
+				<input class="oauth" name="{{project_id}}" type="image" src="images/ConnectWithOptimizelyButton.png" alt="Submit"></input>
 			</form>
 		</div>
 		<div>
