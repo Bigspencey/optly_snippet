@@ -1,4 +1,17 @@
 <div class="container">
 	<h1 class="title">Find out what's in your Optimizley snippet!</h1>
-	<img src="images/ConnectWithOptimizelyButton.png">
+	<div class="form">
+		<div>
+			<form method="POST" action="oauth">
+				<input class="oauth" type="image" src="images/ConnectWithOptimizelyButton.png" alt="Submit"></input>
+			</form>
+		</div>
+		<div>
+			<form class="form-group" method="POST" action="/analyze">
+				<label class="field">Project ID</label></br>
+				<input class="" name="project_id" required="required" type="project_id"></input></br>
+				<input class="confirm" type="submit" value="Submit"></input>
+			</form>
+		</div>
+	</div>
 </div>
