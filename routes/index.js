@@ -4,7 +4,9 @@ var snippet = require('../services/snippet_analysis');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: console.dir(req.body) });
+	var unhashedContext = req.query.signed_request.split(".")[1];
+	var data = JSON.parse(new Buffer(unhashedContext, 'base64'));
+ 	res.render('index', { project_id: data.context.environment.current_project });
 });
 
 /* POST Analysis */
