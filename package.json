@@ -12,7 +12,10 @@
     "express": "~4.13.1",
     "handlebars": "^4.0.3",
     "hbs": "^3.1.1",
+    "lodash": "^3.10.1",
     "morgan": "~1.6.1",
+    "node-inspector": "^0.12.3",
+    "nodemon": "^1.7.1",
     "request": "^2.64.0",
     "serve-favicon": "~2.3.0"
   }
