@@ -22,5 +22,6 @@ if (window.location.href === "http://localhost:3000/analyze") {
 	    }
 	];
 	var ctx = document.getElementById("myChart").getContext("2d");
-	var myDoughnutChart = new Chart(ctx[1]).Doughnut(data,options);
+	debugger;
+	var myDoughnutChart = new Chart(ctx).Doughnut(data);
 }
