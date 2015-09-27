@@ -53,3 +53,10 @@ body {
     height: 32px;
     padding: 0 10px;
 }
+
+#chart {
+	display: block;
+	width: 45em;
+	height: 45em;
+	margin: auto;
+}
