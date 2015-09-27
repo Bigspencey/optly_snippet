@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 	}
 });
 
-/* POST Analysis */
+/* POST Analyze */
 router.post('/analyze', function(req, res) {
 	if (req.body.project_id != undefined){
 		var project_id = req.body.project_id;
