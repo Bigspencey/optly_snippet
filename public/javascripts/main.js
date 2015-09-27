@@ -1,7 +1,7 @@
 "use strict";
 
 if (window.location.href === "http://localhost:3000/analyze" || window.location.href === "https://optly-snippet.herokuapp.com/analyze") {
-	var serverInfo = document.getElementById("myChart").getAttribute("data");
+	var serverInfo = document.getElementById("chart").getAttribute("data");
 	var dataArray = serverInfo.split(",");
 	var data = [
 	    {
@@ -47,6 +47,6 @@ if (window.location.href === "http://localhost:3000/analyze" || window.location.
 	        label: "Goals"
 	    }
 	];
-	var ctx = document.getElementById("myChart").getContext("2d");
+	var ctx = document.getElementById("chart").getContext("2d");
 	var myDoughnutChart = new Chart(ctx).Doughnut(data);
 }
