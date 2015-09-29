@@ -43,6 +43,16 @@ module.exports = function (project_id, callback) {
 			callback(null, snippet, experimentData, totals);
 		},
 
+		function calculateAudiences (snippet, experimentData, totals) {
+			var totals["audiences"] = JSON.stringify(experimentData.audiences).length + "audiences".length;
+			callback(null, snippet, experimentData, totals);
+		},
+
+		function calculateExperiments (snippet, experimentData, totals) {
+			var totals["experiments"] = JSON.stringify(experimentData.experiments).length + "experiments".length;
+			callback(null, snippet, experimentData, totals);
+		},
+
 		function calculateLengths (snippet, experimentData, finaljQuery, callback) {
 			var goalExpressions = JSON.stringify(experimentData.goal_expressions).length + "goal_expressions".length;
 			var clickGoals = JSON.stringify(experimentData.click_goals).length + "click_goals".length;
@@ -50,9 +60,6 @@ module.exports = function (project_id, callback) {
 			var sectionLength = JSON.stringify(experimentData.sections).length + "sections".length;
 			var totalSize = snippet.length;
 			// Lengths for each portion of snippet
-			var jQueryLength = finaljQuery.length;
-			var audiencesLength = JSON.stringify(experimentData.audiences).length + "audiences".length;
-			var experimentLength = JSON.stringify(experimentData.experiments).length + "experiments".length;
 			var totalVaritionLength = variationLength + sectionLength;
 			var totalGoalsLength = goalExpressions + clickGoals;
 			var overHead = jQueryLength + projectJSLength + audiencesLength + experimentLength + totalVaritionLength + totalGoalsLength;
