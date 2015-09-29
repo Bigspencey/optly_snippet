@@ -43,25 +43,38 @@ module.exports = function (project_id, callback) {
 			callback(null, snippet, experimentData, totals);
 		},
 
-		function calculateAudiences (snippet, experimentData, totals) {
-			var totals["audiences"] = JSON.stringify(experimentData.audiences).length + "audiences".length;
+		function calculateAudiences (snippet, experimentData, totals, callback) {
+			totals["audiences"] = JSON.stringify(experimentData.audiences).length + "audiences".length;
 			callback(null, snippet, experimentData, totals);
 		},
 
-		function calculateExperiments (snippet, experimentData, totals) {
-			var totals["experiments"] = JSON.stringify(experimentData.experiments).length + "experiments".length;
+		function calculateExperiments (snippet, experimentData, totals, callback) {
+			totals["experiments"] = JSON.stringify(experimentData.experiments).length + "experiments".length;
 			callback(null, snippet, experimentData, totals);
+		},
+
+		function calculateVariations (snippet, experimentData, totals, callback) {
+			var variations = JSON.stringify(experimentData.variations).length + "variations".length;
+			var sections = JSON.stringify(experimentData.sections).length + "sections".length;
+			totals["variations"] = variations + sections;
+			callback(null, snippet, experimentData, totals);
+		},
+
+		function calculateGoals (snippet, experimentData, totals, callback) {
+			var goalExpressions = JSON.stringify(experimentData.goal_expressions).length + "goal_expressions".length;
+			var clickGoals = JSON.stringify(experimentData.click_goals).length + "click_goals".length;
+			totals["goals"] = goalExpressions + clickGoals;
+			callback(null, snippet, totals);
+		},
+
+		function calculateOptimizely (snippet, totals, callback) {
+			var totalSize = snippet.length;
+
 		},
 
 		function calculateLengths (snippet, experimentData, finaljQuery, callback) {
-			var goalExpressions = JSON.stringify(experimentData.goal_expressions).length + "goal_expressions".length;
-			var clickGoals = JSON.stringify(experimentData.click_goals).length + "click_goals".length;
-			var variationLength = JSON.stringify(experimentData.variations).length + "variations".length;
-			var sectionLength = JSON.stringify(experimentData.sections).length + "sections".length;
-			var totalSize = snippet.length;
+			
 			// Lengths for each portion of snippet
-			var totalVaritionLength = variationLength + sectionLength;
-			var totalGoalsLength = goalExpressions + clickGoals;
 			var overHead = jQueryLength + projectJSLength + audiencesLength + experimentLength + totalVaritionLength + totalGoalsLength;
 			var optlyLength = totalSize - overHead;
 			var totals = [optlyLength, jQueryLength, projectJSLength, audiencesLength, experimentLength, totalVaritionLength, totalGoalsLength];
