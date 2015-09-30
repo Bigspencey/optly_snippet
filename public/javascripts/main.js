@@ -1,47 +1,52 @@
 "use strict";
 
-if (window.location.href === "http://localhost:3000/analyze" || window.location.href === "https://optly-snippet.herokuapp.com/analyze") {
-	var serverInfo = document.getElementById("chart").getAttribute("data");
-	var dataArray = serverInfo.split(",");
+if (window.location.href.indexOf("analyze") !== -1) {
+	var audiencesSize = document.getElementById("chart").getAttribute("data-audience");
+	var jQuerySize = document.getElementById("chart").getAttribute("data-jquery");
+	var experimentsSize = document.getElementById("chart").getAttribute("data-experiments");
+	var goalsSize = document.getElementById("chart").getAttribute("data-goals");
+	var optlyTotalSize = document.getElementById("chart").getAttribute("data-optlytotal");
+	var projectJSSize = document.getElementById("chart").getAttribute("data-projectjs");
+	var variationsSize = document.getElementById("chart").getAttribute("data-variations");
 	var data = [
 	    {
-	        value: dataArray[0],
+	        value: optlyTotalSize,
 	        color:"#F7464A",
 	        highlight: "#FF5A5E",
 	        label: "Optimizely Logic"
 	    },
 	    {
-	        value: dataArray[1],
+	        value: jQuerySize,
 	        color: "#46BFBD",
 	        highlight: "#5AD3D1",
 	        label: "jQuery"
 	    },
 	    {
-	        value: dataArray[2],
+	        value: projectJSSize,
 	        color: "#FDB45C",
 	        highlight: "#FFC870",
 	        label: "Project JS"
 	    },
 	    {
-	        value: dataArray[3],
+	        value: audiencesSize,
 	        color:"#3366FF",
 	        highlight: "#0000FF",
 	        label: "Audiences"
 	    },
 	    {
-	        value: dataArray[4],
+	        value: experimentsSize,
 	        color: "#FF0000",
 	        highlight: "#CC0000",
 	        label: "Experiments"
 	    },
 	    {
-	        value: dataArray[5],
+	        value: variationsSize,
 	        color: "#00FF00",
 	        highlight: "#33CC33",
 	        label: "Variation Code"
 	    },
 	   	{
-	        value: dataArray[6],
+	        value: goalsSize,
 	        color: "#00FFFF",
 	        highlight: "#33CCFF",
 	        label: "Goals"
