@@ -8,8 +8,10 @@ module.exports = function (project_id, callback) {
 			var url = "https://cdn.optimizely.com/js/",
 			snippet;
 			request(url + project_id + ".js", function(error, response, body) {
-				if (!error && response.statusCode == 200){
+				if (!error && response.statusCode == 200) {
 					snippet = body.trim();
+				} else if (response.statusCode == 403) {
+					// Throw some error.
 				}
 			callback(null, snippet);
 			});
@@ -103,6 +105,8 @@ module.exports = function (project_id, callback) {
 	function (err, results) {
 		if (!err) {
 			callback(results)
+		} else {
+			console.error("Error: " + err);
 		}
 	});
 }
