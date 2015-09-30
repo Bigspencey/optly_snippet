@@ -44,25 +44,48 @@ module.exports = function (project_id, callback) {
 		},
 
 		function calculateAudiences (snippet, experimentData, totals, callback) {
-			totals["audiences"] = JSON.stringify(experimentData.audiences).length + "audiences".length;
+			if (experimentData.audiences === undefined) {
+				totals["audiences"] = 0;
+			} else {
+				totals["audiences"] = JSON.stringify(experimentData.audiences).length + "audiences".length;
+			}
 			callback(null, snippet, experimentData, totals);
 		},
 
 		function calculateExperiments (snippet, experimentData, totals, callback) {
-			totals["experiments"] = JSON.stringify(experimentData.experiments).length + "experiments".length;
+			if (experimentData.experiments === undefined) {
+				totals["experiments"] = 0;
+			} else {
+				totals["experiments"] = JSON.stringify(experimentData.experiments).length + "experiments".length;
+			}
 			callback(null, snippet, experimentData, totals);
 		},
 
 		function calculateVariations (snippet, experimentData, totals, callback) {
-			var variations = JSON.stringify(experimentData.variations).length + "variations".length;
-			var sections = JSON.stringify(experimentData.sections).length + "sections".length;
-			totals["variations"] = variations + sections;
+			if (experimentData.variations === undefined) {
+				totals["variations"] = 0;
+			} else {
+				totals["variations"] = JSON.stringify(experimentData.variations).length + "variations".length;
+			}
+			callback(null, snippet, experimentData, totals);
+		},
+
+		function calculateSections (snippet, experimentData, totals, callback) {
+			if (experimentData.sections === undefined) {
+				// Do nothing.
+			} else {
+				totals["variations"] += JSON.stringify(experimentData.sections).length + "sections".length;
+			}
 			callback(null, snippet, experimentData, totals);
 		},
 
 		function calculateGoals (snippet, experimentData, totals, callback) {
+			if (experimentData.click_goals === undefined) {
+				var clickGoals = 0;
+			} else {
+				var clickGoals = JSON.stringify(experimentData.click_goals).length + "click_goals".length;
+			}
 			var goalExpressions = JSON.stringify(experimentData.goal_expressions).length + "goal_expressions".length;
-			var clickGoals = JSON.stringify(experimentData.click_goals).length + "click_goals".length;
 			totals["goals"] = goalExpressions + clickGoals;
 			callback(null, snippet, totals);
 		},
