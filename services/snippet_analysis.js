@@ -68,16 +68,12 @@ module.exports = function (project_id, callback) {
 		},
 
 		function calculateOptimizely (snippet, totals, callback) {
-			var totalSize = snippet.length;
-
-		},
-
-		function calculateLengths (snippet, experimentData, finaljQuery, callback) {
-			
-			// Lengths for each portion of snippet
-			var overHead = jQueryLength + projectJSLength + audiencesLength + experimentLength + totalVaritionLength + totalGoalsLength;
-			var optlyLength = totalSize - overHead;
-			var totals = [optlyLength, jQueryLength, projectJSLength, audiencesLength, experimentLength, totalVaritionLength, totalGoalsLength];
+			var snippetSize = snippet.length;
+			var overHead = 0;
+			for (var index in totals) {
+  				overHead += totals[index];
+			}
+			totals["optlyTotal"] = snippetSize - overHead;
 			callback(null, totals);
 		}
 		],
