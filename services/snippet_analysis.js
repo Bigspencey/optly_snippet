@@ -1,20 +1,28 @@
 var request = require('request');
 var async = require('async');
 
-module.exports = function (project_id, callback) {
+module.exports = function (project_id, res, callback) {
 
 	async.waterfall([
 		function readSnippet (callback) {
 			var url = "https://cdn.optimizely.com/js/",
-			snippet;
-			request(url + project_id + ".js", function(error, response, body) {
-				if (!error && response.statusCode == 200) {
-					snippet = body.trim();
-				} else if (response.statusCode == 403) {
-					// Throw some error.
-				}
-			callback(null, snippet);
-			});
+			snippet,
+			counter = 0;
+			var makeRequest = function() { 
+				request(url + project_id + ".js", function(error, response, body) {
+					if (!error && response.statusCode == 200) {
+						snippet = body.trim();
+					} else if (response.statusCode == 403 || counter === 5) {
+						callback(true);
+					}
+					while (!/optimizelyCode/.test(snippet) && counter < 4) {
+						counter += 1;
+						makeRequest();
+					}
+					callback(null, snippet);
+				});
+			}
+			makeRequest();
 		},
 
 		function retrieveExperimentData (snippet, callback) {
@@ -106,7 +114,7 @@ module.exports = function (project_id, callback) {
 		if (!err) {
 			callback(results)
 		} else {
-			console.error("Error: " + err);
+			throw new Error("Invalid Request for your Project ID");
 		}
 	});
 }
