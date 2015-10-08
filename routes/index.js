@@ -18,11 +18,7 @@ router.get('/', function(req, res, next) {
 
 /* POST Analyze */
 router.post('/analyze', function(req, res) {
-	if (req.body.project_id != undefined){
-		var project_id = req.body.project_id;
-	} else {
-		var project_id = Object.keys(req.body)[0];
-	}
+	var project_id = req.body.project_id;
 	snippet(project_id, function(results) {
 		res.render('analyze', { snippet : results });
 	});

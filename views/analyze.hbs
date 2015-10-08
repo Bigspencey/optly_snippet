@@ -1,4 +1,13 @@
 <div class="container">
-	<h1 class="title">Your Optimizely Snippet</h1>
-	<canvas id="chart" data-audience="{{ snippet.audiences }}" data-jQuery="{{ snippet.jQuery }}" data-experiments="{{ snippet.experiments }}" data-goals="{{ snippet.goals }}" data-optlyTotal="{{ snippet.optlyTotal }}" data-projectJS="{{ snippet.projectJS }}" data-variations="{{ snippet.variations }}"></canvas>
+	<h1 class="title">Snippet Visualization</h1>
+	<div class="chart-container">
+		<canvas id="chart" data-audience="{{ snippet.audiences }}" data-jQuery="{{ snippet.jQuery }}" data-experiments="{{ snippet.experiments }}" data-goals="{{ snippet.goals }}" data-optlyTotal="{{ snippet.optlyTotal }}" data-projectJS="{{ snippet.projectJS }}" data-variations="{{ snippet.variations }}"></canvas>
+	</div>
+	<div id="secret">
+		<form class="form-group" method="POST" action="/analyze">
+			<label class="field">Project ID</label></br>
+			<input name="project_id" required="required" type="project_id"></input></br>
+			<input class="confirm" type="submit" value="Submit"></input>
+		</form>
+	</div>
 </div>
