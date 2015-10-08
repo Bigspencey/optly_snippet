@@ -10,44 +10,44 @@ var variationsSize = document.getElementById("chart").getAttribute("data-variati
 var data = [
     {
         value: optlyTotalSize,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
+        color:"#0081ba",
+        highlight: "#005A82",
         label: "Optimizely Logic"
     },
     {
         value: jQuerySize,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
+        color: "#9acce2",
+        highlight: "#8BB8CB",
         label: "jQuery"
     },
     {
         value: projectJSSize,
-        color: "#FDB45C",
-        highlight: "#FFC870",
+        color: "#fd6b58",
+        highlight: "#CA5646",
         label: "Project JS"
     },
     {
         value: audiencesSize,
-        color:"#3366FF",
-        highlight: "#0000FF",
+        color:"#84cfca",
+        highlight: "#6AA6A2",
         label: "Audiences"
     },
     {
         value: experimentsSize,
-        color: "#FF0000",
-        highlight: "#CC0000",
+        color: "#FFCC00",
+        highlight: "#E6B800",
         label: "Experiments"
     },
     {
         value: variationsSize,
-        color: "#00FF00",
-        highlight: "#33CC33",
+        color: "#33CC33",
+        highlight: "#29A329",
         label: "Variation Code"
     },
    	{
         value: goalsSize,
-        color: "#00FFFF",
-        highlight: "#33CCFF",
+        color: "#a3356e",
+        highlight: "#822A58",
         label: "Goals"
     }
 ];

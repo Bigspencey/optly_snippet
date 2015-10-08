@@ -2,12 +2,6 @@
 	<h1 class="title">Find out what's in your Optimizley snippet!</h1>
 	<div class="form">
 		<div>
-			<form method="POST" action="/analyze">
-				<input name="{{project_id}}" type="hidden"></input>
-				<input class="oauth" type="image" src="images/ConnectWithOptimizelyButton.png" alt="Submit"></input>
-			</form>
-		</div>
-		<div>
 			<form class="form-group" method="POST" action="/analyze">
 				<label class="field">Project ID</label></br>
 				<input name="project_id" required="required" type="project_id"></input></br>

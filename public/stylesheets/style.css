@@ -60,3 +60,7 @@ body {
 	height: 45em;
 	margin: auto;
 }
+
+#secret {
+	display: none;
+}
