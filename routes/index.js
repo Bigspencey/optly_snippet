@@ -20,7 +20,7 @@ router.post('/analyze', function(req, res) {
 	} else {
 		var project_id = Object.keys(req.body)[0];
 	}
-	snippet(project_id, res, function(results) {
+	snippet(project_id, function(results) {
 		res.render('analyze', { snippet : results });
 	});
 });

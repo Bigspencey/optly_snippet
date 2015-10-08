@@ -1,28 +1,22 @@
 var request = require('request');
 var async = require('async');
 
-module.exports = function (project_id, res, callback) {
+module.exports = function (project_id, callback) {
+
+	var request_options = {
+		url: "https://cdn.optimizely.com/js/" + project_id + ".js",
+		gzip: true
+	}
 
 	async.waterfall([
 		function readSnippet (callback) {
-			var url = "https://cdn.optimizely.com/js/",
-			snippet,
-			counter = 0;
-			var makeRequest = function() { 
-				request(url + project_id + ".js", function(error, response, body) {
-					if (!error && response.statusCode == 200) {
-						snippet = body.trim();
-					} else if (response.statusCode == 403 || counter === 5) {
-						callback(true);
-					}
-					while (!/optimizelyCode/.test(snippet) && counter < 4) {
-						counter += 1;
-						makeRequest();
-					}
-					callback(null, snippet);
-				});
-			}
-			makeRequest();
+			var snippet;
+			request(request_options, function (error, response, body) {
+				if (!error && response.statusCode == 200) {
+					snippet = body.trim();
+				}
+				callback(null, snippet);
+			});
 		},
 
 		function retrieveExperimentData (snippet, callback) {
