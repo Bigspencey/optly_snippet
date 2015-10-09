@@ -7,6 +7,10 @@ var goalsSize = document.getElementById("chart").getAttribute("data-goals");
 var optlyTotalSize = document.getElementById("chart").getAttribute("data-optlytotal");
 var projectJSSize = document.getElementById("chart").getAttribute("data-projectjs");
 var variationsSize = document.getElementById("chart").getAttribute("data-variations");
+
+var total = audiencesSize + jQuerySize + experimentsSize + goalsSize + optlyTotalSize + projectJSSize
++ variationsSize;
+
 var data = [
     {
         value: optlyTotalSize,
@@ -51,5 +55,9 @@ var data = [
         label: "Goals"
     }
 ];
+
+var options = {
+    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= numeral(circumference / 6.283).format('(0[.][00]%)') %>"
+};
 var ctx = document.getElementById("chart").getContext("2d");
-var myDoughnutChart = new Chart(ctx).Pie(data);
+var myDoughnutChart = new Chart(ctx).Pie(data, options);

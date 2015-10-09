@@ -6,6 +6,7 @@
 body {
   padding: 50px;
   font: 14px "Proxima-Nova", Times New Roman, Arial, sans-serif;
+  background-color: #F2F5FA !important;
 }
 
 .title {
