@@ -28,8 +28,15 @@ module.exports = function (project_id, callback) {
 
 		function retrievejQuery (snippet, experimentData, callback) {
 			var firstHalfOfSnippet = snippet.split("var optimizelyCode")[0];
-			var jQuery = firstHalfOfSnippet.split("optly.Cleanse.start();")[1].trim();
-			callback(null, snippet, experimentData, jQuery)
+			var secondHalfOfSnippet = snippet.split("var optimizelyCode")[1];
+			if (/optly\.Cleanse\.start\(\);/.test(firstHalfOfSnippet)) {
+				var jQuery = firstHalfOfSnippet.split("optly.Cleanse.start();")[1].trim();
+				callback(null, snippet, experimentData, jQuery);
+			} else {
+				var alternatejQuerySnippet = secondHalfOfSnippet.split("optly.Cleanse.start();")[1];
+				var jQuery = alternatejQuerySnippet.split("}(window);")[0].trim() + "}(window);";
+				callback(null, snippet, experimentData, jQuery);
+			}
 		},
 
 		function calculatejQuery (snippet, experimentData, jQuery, callback) {
