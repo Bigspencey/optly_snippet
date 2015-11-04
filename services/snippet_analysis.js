@@ -14,8 +14,11 @@ module.exports = function (project_id, callback) {
 			request(request_options, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					snippet = body.trim();
+					callback(null, snippet);
+				} else if (!error && response.statusCode == 403) {
+					var message = "?mobile_project";
+					callback(true, message);
 				}
-				callback(null, snippet);
 			});
 		},
 
@@ -112,10 +115,6 @@ module.exports = function (project_id, callback) {
 		}
 		],
 	function (err, results) {
-		if (!err) {
-			callback(results)
-		} else {
-			throw new Error("Invalid Request for your Project ID");
-		}
+		callback(err, results);
 	});
 }
