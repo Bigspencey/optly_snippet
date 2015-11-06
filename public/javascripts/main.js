@@ -69,8 +69,9 @@ if (window.location.href.indexOf("mobile_project") !== -1) {
 }
 
 if (window.location.href.indexOf("internal_error") !== -1) {
+    var project_id = window.location.search.split("=")[1];
     $("#error-message").text("There was an error loading your project visualization. The team working on this application has been notified.");
     window['optimizely'] = window['optimizely'] || [];
-    window.optimizely.push(["trackEvent", "error"]);
-    window.optimizely.push(["trackEvent", "Nothing"]);
+    window.optimizely.push(["trackEvent", "errors"]);
+    window.optimizely.push(["trackEvent", "error_" + project_id]);
 }

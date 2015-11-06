@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var snippet = require('../services/snippet_analysis');
 
-/* GET home page. */
+/* GET Home Page. */
 router.get('/', function(req, res, next) {
 	if (req.query.signed_request != undefined){
 		var unhashedContext = req.query.signed_request.split(".")[1];
@@ -12,8 +12,10 @@ router.get('/', function(req, res, next) {
 			if (!err) {
 				res.render('analyze', { snippet : results });
 			} else {
-				var queryString = encodeURIComponent(results);
-				res.redirect('error' + queryString);
+				if (typeof results === "object") {
+					results = "visualization_error";
+				}
+				res.redirect('error' + "?" + results + "=" + project_id);
 			}
 		});
 	} else {
@@ -28,8 +30,10 @@ router.post('/analyze', function(req, res) {
 		if (!err) {
 			res.render('analyze', { snippet : results });
 		} else {
-			var queryString = encodeURIComponent(results);
-			res.redirect('error' + results);
+			if (typeof results === "object") {
+				results = "internal_error";
+			}
+			res.redirect('error' + "?" + results + "=" + project_id);
 		}
 	});
 });
