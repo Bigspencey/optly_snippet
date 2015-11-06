@@ -16,6 +16,26 @@ body {
 	padding-bottom: 1em;
 }
 
+.title-left {
+	font-size: 30px;
+	text-align: left;
+	color: #0081ba;
+}
+
+.swatch-label {
+	color: #0081ba;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.swatch {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-right: 10px;
+}
+
 .oauth {
 	margin: auto;
 	width: 20em;
@@ -24,7 +44,6 @@ body {
 .form {
 	margin: auto;
 	text-align: center;
-
 }
 
 .field {
@@ -55,13 +74,37 @@ body {
     padding: 0 10px;
 }
 
+.pie-legend {
+	display: inline-block;
+	list-style: none;
+	padding: 0px;
+}
+
+.recommendations {
+	list-style: none;
+	padding: 0px;
+	font-size: 16px;
+}
+
+.item {
+	padding-bottom: 10px;
+}
+
 #chart {
 	display: block;
 	width: 45em;
 	height: 45em;
+}
+
+#error-message {
 	margin: auto;
+	text-align: center;
 }
 
 #secret {
 	display: none;
+}
+
+footer {
+	display: inline-block !important;
 }

@@ -14,22 +14,40 @@ module.exports = function (project_id, callback) {
 			request(request_options, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					snippet = body.trim();
+					callback(null, snippet);
+				} else if (!error && response.statusCode == 403) {
+					var message = "?mobile_project";
+					callback(true, message);
 				}
-				callback(null, snippet);
 			});
 		},
 
 		function retrieveExperimentData (snippet, callback) {
-			var everythingAfterData = snippet.split('var DATA=')[1];
-			var experimentString = everythingAfterData.split('\n')[0].slice(0,-1);
-			var experimentData = JSON.parse(experimentString);
-			callback(null, snippet, experimentData);
+			try {
+				var everythingAfterData = snippet.split('var DATA=')[1];
+				var experimentString = everythingAfterData.split('\n')[0].slice(0,-1);
+				var experimentData = JSON.parse(experimentString);
+				callback(null, snippet, experimentData);
+			} catch (error) {
+				callback(true, error);
+			}
 		},
 
 		function retrievejQuery (snippet, experimentData, callback) {
-			var firstHalfOfSnippet = snippet.split("var optimizelyCode")[0];
-			var jQuery = firstHalfOfSnippet.split("optly.Cleanse.start();")[1].trim();
-			callback(null, snippet, experimentData, jQuery)
+			try {
+				var firstHalfOfSnippet = snippet.split("var optimizelyCode")[0];
+				var secondHalfOfSnippet = snippet.split("var optimizelyCode")[1];
+				if (/optly\.Cleanse\.start\(\);/.test(firstHalfOfSnippet)) {
+					var jQuery = firstHalfOfSnippet.split("optly.Cleanse.start();")[1].trim();
+					callback(null, snippet, experimentData, jQuery);
+				} else {
+					var alternatejQuerySnippet = secondHalfOfSnippet.split("optly.Cleanse.start();")[1];
+					var jQuery = alternatejQuerySnippet.split("}(window);")[0].trim() + "}(window);";
+					callback(null, snippet, experimentData, jQuery);
+				}
+			} catch (error) {
+				callback(true, error);
+			}
 		},
 
 		function calculatejQuery (snippet, experimentData, jQuery, callback) {
@@ -105,10 +123,6 @@ module.exports = function (project_id, callback) {
 		}
 		],
 	function (err, results) {
-		if (!err) {
-			callback(results)
-		} else {
-			throw new Error("Invalid Request for your Project ID");
-		}
+		callback(err, results);
 	});
 }
