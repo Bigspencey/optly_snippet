@@ -74,7 +74,7 @@ body {
     padding: 0 10px;
 }
 
-.pie-legend {
+.pie-legend, .radar-legend {
 	display: inline-block;
 	list-style: none;
 	padding: 0px;

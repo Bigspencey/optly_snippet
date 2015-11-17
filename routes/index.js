@@ -28,7 +28,9 @@ router.post('/analyze', function(req, res) {
 	var project_id = req.body.project_id;
 	snippet(project_id, function(err, results) {
 		if (!err) {
-			res.render('analyze', { snippet : results });
+			res.render('analyze', {
+				results: JSON.stringify(results)
+			});
 		} else {
 			if (typeof results === "object") {
 				results = "internal_error";

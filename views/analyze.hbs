@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="col-md-6">
-		<canvas id="chart" data-audience="{{ snippet.audiences }}" data-jQuery="{{ snippet.jQuery }}" data-experiments="{{ snippet.experiments }}" data-goals="{{ snippet.goals }}" data-optlyTotal="{{ snippet.optlyTotal }}" data-projectJS="{{ snippet.projectJS }}" data-variations="{{ snippet.variations }}"></canvas>
+		<canvas id="chart"></canvas>
 		<div id="secret">
 			<form class="form-group" method="POST" action="/analyze">
 				<label class="field">Project ID</label></br>
@@ -33,3 +33,6 @@
 		Visualization created using <a href="http://www.chartjs.org/">Chart.js</a> library.
 	</footer>
 </div>
+<script>
+  var resultsString = '{{{ results }}}';
+</script>
